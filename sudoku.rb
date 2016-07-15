@@ -20,12 +20,12 @@ def solve(board_string)
     sudoku_board.each_with_index do |row, row_idx|
       row.each_with_index do |square, col_idx|
         if row[col_idx].is_a?(Array)
-          row[col_idx] = row_checker(row[col_idx], row_idx, sudoku_board)
-          row[col_idx] = column_checker(row[col_idx], col_idx, sudoku_board)
-          row[col_idx] = box_checker(row[col_idx], row_idx, col_idx, sudoku_board)
-           row[col_idx] = box_possibility_checker(row[col_idx], row_idx, col_idx, sudoku_board)
-           row[col_idx] = col_possibility_checker(row[col_idx], row_idx, col_idx, sudoku_board)
-           row[col_idx] = row_possibility_checker(row[col_idx], row_idx, col_idx, sudoku_board)
+          row[col_idx] = row_checker(square, row_idx, sudoku_board)
+          row[col_idx] = column_checker(square, col_idx, sudoku_board)
+          row[col_idx] = box_checker(square, row_idx, col_idx, sudoku_board)
+          row[col_idx] = box_possibility_checker(square, row_idx, col_idx, sudoku_board)
+          row[col_idx] = col_possibility_checker(square, row_idx, col_idx, sudoku_board)
+          row[col_idx] = row_possibility_checker(square, row_idx, col_idx, sudoku_board)
           if row[col_idx].length == 1
             row[col_idx] = row[col_idx][0].to_i
           end
@@ -73,7 +73,6 @@ def row_possibility_checker(array, row_idx, col_idx, sudoku_board)
     array = new_sum
   end
   array
-
 end
 
 def col_possibility_checker(array, row_idx, col_idx, sudoku_board)
@@ -91,9 +90,7 @@ def col_possibility_checker(array, row_idx, col_idx, sudoku_board)
     array = new_sum
   end
   array
-
 end
-
 
 def column_checker(array, column_idx, sudoku_board)
   sideways_board = sudoku_board.transpose
@@ -119,54 +116,6 @@ def box_checker(array, row_idx, col_idx, sudoku_board)
   end
   array
 end
-
-
-
-
-  # box.each do |row|
-  #   row.each do |elm|
-  #     if elm.is_a?(Integer)
-  #       array.delete_if { |num| num == elm }
-  #     end
-  #   end
-  # end
-  # array
-# end
-
-# def box_possibility_checker(array, row_idx, col_idx, sudoku_board)
-#   box_row = row_idx/3
-#   box_col = col_idx/3
-#   sum = []
-#   sudoku_board.each_with_index do |row, check_row_idx|
-#     row.each_with_index do |elm, check_col_idx|
-#       if elm.is_a?(Array)
-#         if check_row_idx/3 == box_row && check_col_idx/3 == box_col && (check_row_idx != row_idx && check_col_idx != col_idx)
-#           sum += elm
-#           # puts "Hello world."
-#         end
-#         puts "Hello world."
-#       end
-#     end
-#   end
-#   puts "this is the sum of possiblities #{sum}"
-
-#   new_sum = array - sum
-
-#   puts "this is the array being tested #{array}"
-
-#   puts "this is the possibilities minus the possiblity being tsted #{new_sum}"
-#   if new_sum.length == 1
-#     array = new_sum
-#   end
-
-#   array
-
-
-
-# end
-
-
-
 
 def box_possibility_checker(array, row_idx, col_idx, sudoku_board)
   box_row = row_idx/3
@@ -197,7 +146,6 @@ end
 # The input board will be in whatever
 # form `solve` returns.
 def solved?(board)
-  # binding.pry
   board.all? do |row|
     row.flatten.length == 9 && row.sort == [1,2,3,4,5,6,7,8,9]
     end
