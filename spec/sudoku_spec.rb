@@ -40,7 +40,7 @@ describe "Sudoku" do
     # end
 
     it 'removes the possible solutions if they are in the three by three grid' do
-      expect(box_checker(sudoku_board[0][1], sudoku_board, 0, 1, )).to match_array [3,4,6,7,8]
+      expect(box_checker(sudoku_board[0][1], 0, 1, sudoku_board)).to match_array [3,4,6,7,8]
     end
 
     it 'checks for unique possible solutions within three by three grid' do
