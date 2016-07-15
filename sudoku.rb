@@ -1,5 +1,4 @@
 # PSEUDO-CODE
-
 # INPUT:
 #   - column_checker, row_checker, box_checker, and box_possibility_checker methods
 #   - Begin by iterating through from start
@@ -15,6 +14,7 @@
 # your solver has tried to solve it.
 # How you represent your board is up to you!
 def solve(board_string)
+<<<<<<< HEAD
   sudoku_board = string_breaker(board_string)
   i = 0
   until solved?(sudoku_board) || i == 20
@@ -103,6 +103,7 @@ def box_checker(array, box)
 end
 
 def box_possibility_checker
+
 end
 
 # Returns a boolean indicating whether
