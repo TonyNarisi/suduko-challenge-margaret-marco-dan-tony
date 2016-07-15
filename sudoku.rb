@@ -14,7 +14,6 @@
 # your solver has tried to solve it.
 # How you represent your board is up to you!
 def solve(board_string)
-<<<<<<< HEAD
   sudoku_board = string_breaker(board_string)
   i = 0
   until solved?(sudoku_board) || i == 20
