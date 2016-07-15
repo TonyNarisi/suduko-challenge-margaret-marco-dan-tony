@@ -16,19 +16,48 @@
 # How you represent your board is up to you!
 def solve(board_string)
   sudoku_board = string_breaker(board_string)
-  sudoku_board.each_with_index do |row, row_idx|
-    row.each_with_index do |square, col_idx|
-      if row[col_idx].is_a?(Array)
-        row[col_idx] = row_checker(row[col_idx], row_idx, sudoku_board)
-        row[col_idx] = column_checker(row[col_idx], col_idx, sudoku_board)
-        if row[col_idx].length == 1
-          row[col_idx] = row[col_idx][0].to_i
+  i = 0
+  until solved?(sudoku_board) || i == 20
+    sudoku_board.each_with_index do |row, row_idx|
+      row.each_with_index do |square, col_idx|
+        if row[col_idx].is_a?(Array)
+          row[col_idx] = row_checker(row[col_idx], row_idx, sudoku_board)
+          row[col_idx] = column_checker(row[col_idx], col_idx, sudoku_board)
+          if row[col_idx].length == 1
+            row[col_idx] = row[col_idx][0].to_i
+          end
         end
       end
     end
+    i += 1
   end
   sudoku_board
 end
+
+# def solve(board_string)
+#   sudoku_board = string_breaker(board_string)
+#   until solved?(sudoku_board)
+#     sudoku_board_dup = sudoku_board
+#     sudoku_board_dup.each_with_index do |row, row_idx|
+#       row.each_with_index do |square, col_idx|
+#         if row[col_idx].is_a?(Array)
+#           row[col_idx] = row_checker(row[col_idx], row_idx, sudoku_board_dup)
+#           row[col_idx] = column_checker(row[col_idx], col_idx, sudoku_board_dup)
+#           if row[col_idx].length == 1
+#             row[col_idx] = row[col_idx][0].to_i
+#           end
+#         end
+#       end
+#     end
+#     if sudoku_board_dup == sudoku_board
+#       break
+#     else
+#       sudoku_board = sudoku_board_dup
+#     end
+#   end
+#   sudoku_board
+# end
+
 
 def string_breaker(sudoku_string)
   sudoku_board = sudoku_string.split('').each_slice(9).to_a
@@ -81,6 +110,10 @@ end
 # The input board will be in whatever
 # form `solve` returns.
 def solved?(board)
+  # binding.pry
+  board.all? do |row|
+    row.flatten.length == 9 && row.sort == [1,2,3,4,5,6,7,8,9]
+    end
 end
 
 # Takes in a board in some form and
@@ -89,4 +122,5 @@ end
 # The input board will be in whatever
 # form `solve` returns.
 def pretty_board(board)
+  board
 end
