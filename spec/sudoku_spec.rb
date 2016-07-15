@@ -28,15 +28,19 @@ describe "Sudoku" do
                       ] }
 
     it 'removes the possible solutions if they are found in the row' do
-      expect(row_checker(sudoku_board[0][1], 0)).to match_array [3,4,6,7,9]
+      expect(row_checker(sudoku_board[0][1], 0, sudoku_board)).to match_array [3,4,6,7,9]
     end
 
     it 'removes the possible solutions if they are found in the column' do
-      expect(column_checker(sudoku_board[1][0], 0)).to match_array [3,5,8,9]
+      expect(column_checker(sudoku_board[1][0], 0, sudoku_board)).to match_array [3,5,8,9]
     end
 
+    # it 'removes the possible solutions if they are in the three by three grid' do
+    #   expect(box_checker(sudoku_board[0][1], box_one)).to match_array [3,4,6,7,8]
+    # end
+
     it 'removes the possible solutions if they are in the three by three grid' do
-      expect(box_checker(sudoku_board[0][1], box_one)).to match_array [3,4,6,7,8]
+      expect(box_checker(sudoku_board[0][1], sudoku_board, 0, 1, )).to match_array [3,4,6,7,8]
     end
 
     it 'checks for unique possible solutions within three by three grid' do

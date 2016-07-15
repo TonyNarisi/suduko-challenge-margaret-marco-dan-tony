@@ -90,16 +90,33 @@ def column_checker(array, column_idx, sudoku_board)
   array
 end
 
-def box_checker(array, box)
-  box.each do |row|
-    row.each do |elm|
+def box_checker(array, sudoku_board, row_idx, col_idx)
+  box_row = row_idx/3
+  box_col = col_idx/3
+  sudoku_board.each_with_index do |row, check_row_idx|
+    row.each_with_index do |elm, check_col_idx|
       if elm.is_a?(Integer)
-        array.delete_if { |num| num == elm }
+        if check_row_idx/3 == box_row && check_col_idx/3 == box_col
+          array.delete_if { |num| num == elm }
+        end
       end
     end
   end
   array
 end
+
+
+
+
+  # box.each do |row|
+  #   row.each do |elm|
+  #     if elm.is_a?(Integer)
+  #       array.delete_if { |num| num == elm }
+  #     end
+  #   end
+  # end
+  # array
+# end
 
 def box_possibility_checker
 

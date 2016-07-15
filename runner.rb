@@ -14,9 +14,8 @@ require 'pry'
 # so we call String#chomp to remove them.
 
 # board_string = File.readlines('sudoku_puzzles.txt').first.chomp
-string_board = "29-5----77-----4----4738-129-2--3-648---5--7-5---672--3-9--4--5----8-7---87--51-9"
+string_board = "1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--"
 solved_board = solve(string_board)
-p solved_board
 if solved?(solved_board)
   puts "The board was solved!"
   p pretty_board(solved_board)
