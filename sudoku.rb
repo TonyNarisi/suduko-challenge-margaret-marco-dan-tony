@@ -157,5 +157,11 @@ end
 # The input board will be in whatever
 # form `solve` returns.
 def pretty_board(board)
-  board
+
+  pretty_board =  board.map { |rows| rows.join('').gsub(/(.{1})/, '\1 ') }
+
+  pretty_board.join("\n")
+
 end
+
+# puts pretty_board(board)

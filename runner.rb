@@ -35,39 +35,14 @@ require 'pry'
 # 14) ----------2-65-------18--4--9----6-4-3---57-------------------73------9----------
 # 15) ---------------------------------------------------------------------------------
 
+board_string = "-96-4---11---6---45-481-39---795--43-3--8----4-5-23-18-1-63--59-59-7-83---359---7"
 
+solved_board = solve(board_string)
 
+if solved?(solved_board)
+  puts "The board was solved!"
+  puts pretty_board(solved_board)
+else
+  puts "The board wasn't solved :("
+end
 
-
-
-
-# board_string = "-96-4---11---6---45-481-39---795--43-3--8----4-5-23-18-1-63--59-59-7-83---359---7"
-
-
-# solved_board = solve(board_string)
-# p solved_board
-
-# if solved?(solved_board)
-#   puts "The board was solved!"
-#   p pretty_board(solved_board)
-# else
-#   puts "The board wasn't solved :("
-# end
-
-
-
-
-string_board = "3---------5-7-3--8----28-7-7------43-----------39-41-54--3--8--1---4----968---2--"
-
-p solve(string_board)
-
-# string_board2 = "29-5----77-----4----4738-129-2--3-648---5--7-5---672--3-9--4--5----8-7---87--51-9"
-
-# p solve(string_board2)
-
-# test_array = [[3,5,2],
-#             [[1,2,3],[8,9],7],
-#             [[1,2],1,8]]
-
-
-# box_possibility_checker(test_array[1][0], 1, 0, test_array)
