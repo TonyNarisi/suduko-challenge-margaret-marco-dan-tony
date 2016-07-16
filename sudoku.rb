@@ -16,25 +16,27 @@
 def solve(board_string)
   sudoku_board = string_breaker(board_string)
   i = 0
-  until solved?(sudoku_board) || i == 500
+  until solved?(sudoku_board) || i == 80
     sudoku_board.each_with_index do |row, row_idx|
       row.each_with_index do |square, col_idx|
         if row[col_idx].is_a?(Array)
-          row[col_idx] = row_checker(square, row_idx, sudoku_board)
-          row[col_idx] = column_checker(square, col_idx, sudoku_board)
-          row[col_idx] = box_checker(square, row_idx, col_idx, sudoku_board)
-          row[col_idx] = box_possibility_checker(square, row_idx, col_idx, sudoku_board)
-          row[col_idx] = col_possibility_checker(square, row_idx, col_idx, sudoku_board)
-          row[col_idx] = row_possibility_checker(square, row_idx, col_idx, sudoku_board)
-          if row[col_idx].length == 1
-            row[col_idx] = row[col_idx][0].to_i
-          end
+          solve_suite(row, square, row_idx, col_idx, sudoku_board)
+          row[col_idx] = row[col_idx][0].to_i if row[col_idx].length == 1
         end
       end
     end
     i += 1
   end
   sudoku_board
+end
+
+def solve_suite(row, square, row_idx, col_idx, sudoku_board)
+  row[col_idx] = row_checker(square, row_idx, sudoku_board)
+  row[col_idx] = column_checker(square, col_idx, sudoku_board)
+  row[col_idx] = box_checker(square, row_idx, col_idx, sudoku_board)
+  row[col_idx] = box_possibility_checker(square, row_idx, col_idx, sudoku_board)
+  row[col_idx] = col_possibility_checker(square, row_idx, col_idx, sudoku_board)
+  row[col_idx] = row_possibility_checker(square, row_idx, col_idx, sudoku_board)
 end
 
 def string_breaker(sudoku_string)
