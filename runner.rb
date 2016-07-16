@@ -13,8 +13,6 @@ require 'pry'
 # Remember, the file has newline characters at the end of each line,
 # so we call String#chomp to remove them.
 
-# board_string = File.readlines('sudoku_puzzles.txt').first.chomp
-
 i = 0
 while i < 15
   board_string = File.readlines('sudoku_puzzles.txt')[i].chomp
