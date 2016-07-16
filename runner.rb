@@ -13,7 +13,9 @@ require 'pry'
 # Remember, the file has newline characters at the end of each line,
 # so we call String#chomp to remove them.
 
-# board_string = File.readlines('sudoku_puzzles.txt').first.chomp
+i = 0
+while i<15
+  board_string = File.readlines('sudoku_puzzles.txt')[i].chomp
 
 
 
@@ -35,7 +37,7 @@ require 'pry'
 # 14) ----------2-65-------18--4--9----6-4-3---57-------------------73------9----------
 # 15) ---------------------------------------------------------------------------------
 
-board_string = "-96-4---11---6---45-481-39---795--43-3--8----4-5-23-18-1-63--59-59-7-83---359---7"
+# board_string = "-96-4---11---6---45-481-39---795--43-3--8----4-5-23-18-1-63--59-59-7-83---359---7"
 
 solved_board = solve(board_string)
 
@@ -46,3 +48,5 @@ else
   puts "The board wasn't solved :("
 end
 
+  i+=1
+end
